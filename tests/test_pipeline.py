@@ -46,3 +46,13 @@ def test_receipts_one_call_per_image_and_sheet(tmp_path):
     out = tmp_path / "sheet.csv"
     receipts.write_entry_sheet(rows, out)
     assert out.read_text().splitlines()[0].startswith("file,date,vendor")
+
+
+def test_fields_txt_format(tmp_path):
+    from fieldreport import export
+    out = tmp_path / "r.fields.txt"
+    export.write_fields_txt({"sections": {"summary": "Line 1\nLine 2", "scope": "CI"},
+                             "open_items": ["Confirm liner serial"]}, out)
+    text = out.read_text()
+    assert text.startswith("===FIELD:summary===\nLine 1\nLine 2\n===FIELD:scope===\nCI\n")
+    assert "===FIELD:open_items===\n- Confirm liner serial" in text

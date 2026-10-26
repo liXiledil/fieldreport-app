@@ -5,7 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
-from . import receipts, report, turbocell
+from . import export, receipts, report, turbocell
 from .providers import default_provider
 
 DEFAULT_CATEGORIES = ["Lodging", "Meals", "Fuel", "Car Rental", "Parking", "Airfare", "Tools/Supplies", "Other"]
@@ -31,6 +31,7 @@ def main() -> None:
         result = report.draft(args.job_dir, tpl, provider, runs, smap.get("style_rules"))
         name = tpl["name"].lower().replace(" ", "_")
         (out / f"{name}.fields.json").write_text(json.dumps(result, indent=2))
+        export.write_fields_txt(result, out / f"{name}.fields.txt")
 
     rows = receipts.extract(args.job_dir / "receipts", provider, args.categories, meta["work_order"])
     receipts.write_entry_sheet(rows, out / "expense_entry_sheet.csv")
