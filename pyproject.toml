@@ -1,0 +1,16 @@
+[project]
+name = "fieldreport"
+version = "0.1.0"
+description = "Turn field-service job capture (notes, run data, receipts) into report content and expense packages."
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0"]
+
+[project.optional-dependencies]
+ai = ["anthropic", "openai"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

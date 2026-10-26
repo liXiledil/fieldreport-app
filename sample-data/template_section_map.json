@@ -1,0 +1,65 @@
+{
+  "templates": [
+    {
+      "name": "Field Service Report",
+      "sections": [
+        {
+          "field": "summary",
+          "heading": "Executive Summary",
+          "guide": "3-5 sentences: scope, outcome, key findings, unit status"
+        },
+        {
+          "field": "scope",
+          "heading": "Scope of Work",
+          "guide": "What was contracted"
+        },
+        {
+          "field": "timeline",
+          "heading": "Daily Log",
+          "guide": "Dated bullets of work performed"
+        },
+        {
+          "field": "findings",
+          "heading": "As-Found Condition and Findings",
+          "guide": "Per component; measurements in tables"
+        },
+        {
+          "field": "work_performed",
+          "heading": "Work Performed / Parts Replaced",
+          "guide": "Including parts and serials"
+        },
+        {
+          "field": "testing",
+          "heading": "Return-to-Service Testing",
+          "guide": "Sequence of events and key values from run data"
+        },
+        {
+          "field": "recommendations",
+          "heading": "Recommendations",
+          "guide": "Numbered, actionable"
+        },
+        {
+          "field": "as_left",
+          "heading": "As-Left Condition",
+          "guide": "Unit status at demob"
+        }
+      ]
+    },
+    {
+      "name": "Inspection Data Sheet",
+      "sections": [
+        {
+          "field": "component_table",
+          "heading": "Component Inspection Table",
+          "guide": "Component | Location | Finding | Measurement | Disposition"
+        }
+      ]
+    }
+  ],
+  "style_rules": [
+    "Use the engineer's technical wording",
+    "Units on every value",
+    "Never invent readings, serials, or part numbers; use [CONFIRM: ...]",
+    "No customer personal names"
+  ]
+}
