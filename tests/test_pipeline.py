@@ -56,3 +56,15 @@ def test_fields_txt_format(tmp_path):
     text = out.read_text()
     assert text.startswith("===FIELD:summary===\nLine 1\nLine 2\n===FIELD:scope===\nCI\n")
     assert "===FIELD:open_items===\n- Confirm liner serial" in text
+
+
+def test_save_outputs(tmp_path):
+    from fieldreport import save
+    job = tmp_path / "job"
+    job.mkdir()
+    txt = save.save_report(job, "Field Service Report", {"sections": {"summary": "ok"}, "open_items": []})
+    assert txt.name == "field_service_report.fields.txt" and txt.read_text().startswith("===FIELD:summary===")
+    sheet = save.save_receipts(job, [{"file": "r.jpg", "date": "2026-11-02", "vendor": "Main St Diner",
+                                      "category": "Meals", "amount": 18.42, "currency": "USD",
+                                      "notes": "Dinner", "flags": ["alcohol"]}])
+    assert "2026-11-02_MainStDiner_18.42.jpg" in sheet.read_text() and "alcohol" in sheet.read_text()
